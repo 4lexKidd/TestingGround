@@ -37,7 +37,7 @@ namespace Clunk.Scenes
 
 
         // Our new constructor takes in the new J,I coordinates, and a Player object
-        public GameScene(int nextJ = 0, int nextI = 0, Player player = null) : base()
+        public GameScene(int nextJ = 0, int nextI = 0, Player player = null, HaguruClock clock = null) : base()
         {
             screenJ = nextJ;
             screenI = nextI;
@@ -50,6 +50,16 @@ namespace Clunk.Scenes
             else
             {
                 Global.player = player;
+            }
+
+            //if no Clock is passed in start a new clock at the default pos
+            if (clock == null)
+            {
+                Global.clock = new HaguruClock();
+            }
+            else
+            {
+                Global.clock = clock;
             }
 
             // Create and load our Tilemap and GridCollider
@@ -77,6 +87,7 @@ namespace Clunk.Scenes
             Entity gridEntity = new Entity(0, 0, null, grid);
             Add(gridEntity);
             AddGraphic(tilemap);
+            Add(Global.clock);
 
             // Ensure that the player is not null
             if (Global.player != null)
@@ -86,7 +97,7 @@ namespace Clunk.Scenes
                 // Never should be paused once transitioning is complete
                 Global.paused = false;
             }
-
+            
             //Set PlayerGridposition (plus sprite margin)
             GridXPosOld = (int)(Global.player.X + 16f) / tilemap.TileWidth;
             GridXPos = GridXPosOld;

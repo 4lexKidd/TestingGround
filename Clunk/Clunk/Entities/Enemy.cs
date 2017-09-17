@@ -11,6 +11,8 @@ namespace Clunk.Entities
 {
     public class Enemy : Entity
     {
+        
+
         // Default speed an enemy will move in
         public const float DEFAULT_SPEED = 3.4f;
 
@@ -59,7 +61,7 @@ namespace Clunk.Entities
         public override void Update()
         {
             base.Update();
-
+                        
             // Access the Enemy's Collider to check collision
             var collb = Collider.Collide(X, Y, (int)Global.Type.BULLET);
 

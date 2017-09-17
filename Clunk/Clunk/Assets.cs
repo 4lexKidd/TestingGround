@@ -27,5 +27,7 @@ namespace Clunk
         public const string MAP_WORLD = "../../Assets/Levels/tiles.csv";
         public const string MAP_SOLID = "../../Assets/Levels/solids.csv";
         public const string MAP_TESTINGGROUND = "../../Assets/Levels/TestingGroundTileMap.csv";//keine Kollisionsmap vorhanden
+        public const string HAGURUMAINCOCKWEEL = "../../Assets/Graphics/ZahnrahdFassung4.png";
+        public const string HAGURUSIDECOCKWEEL = "../../Assets/Graphics/NebenZahnrahdFassung5.png";
     }
 }

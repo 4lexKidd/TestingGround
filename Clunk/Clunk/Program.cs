@@ -17,11 +17,13 @@ namespace Clunk
             //To Do Gravity einbauen (oder plattformermovement einbauen[in otter vorhanden])
 
 
-            Global.CLUNK = new Game("Playground", 640, 480);
-            Global.CLUNK.SetWindow(640, 480);
+            Global.CLUNK = new Game("Playground", 1600, 900,60,false);
+            Global.CLUNK.SetWindow(1600,900);
+            Global.CLUNK.FixedFramerate = true;
 
             Global.CLUNK.FirstScene = new TitleScene();
             Global.PlayerSession = Global.CLUNK.AddSession("Player");
+
             Global.PlayerSession.Controller.AddButton("Enter");
             Global.PlayerSession.Controller.Button("Enter").AddKey(Key.Return);
             Global.PlayerSession.Controller.AddButton("Up");

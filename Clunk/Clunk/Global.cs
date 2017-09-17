@@ -18,6 +18,7 @@ namespace Clunk
         public static CameraShaker camShaker = new CameraShaker();
         public static bool paused = false;
         public static Music gameMusic = null;
+        public static HaguruClock clock = null;
         public const int DIR_UP = 0;
         public const int DIR_DOWN = 1;
         public const int DIR_LEFT = 2;
