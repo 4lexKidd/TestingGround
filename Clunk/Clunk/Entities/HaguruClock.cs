@@ -37,33 +37,39 @@ namespace Clunk.Entities
         //Initial Konstrukter - Is only called ones the game runs the first time
         public HaguruClock()
         {
-            //Clock Position
-            X = 0;
-            Y = 0;
+            //Clock Position (Entity Position)
+            X = 200;
+            Y = 200;
 
             //Mainwheel Graphics
             mainWheel = new Image(Assets.HAGURUMAINCOCKWEEL);
             mainWheel.CenterOrigin();
 
-            mainWheel.X = 200;
-            mainWheel.Y = 200;
+            //Darf nicht relativ zur Uhr gerendered werden weil drehen der Uhr sonst mainwheel mitdreht!!!
+            mainWheel.Relative = false;
+
             mainWheel.ScaleX = 0.25f;
             mainWheel.ScaleY = 0.25f;
 
+            mainWheel.X = 0;
+            mainWheel.Y = 0;
+           
             //add it to the rendered Graphiclist            
             graphics.Add(mainWheel);
 
             //SideWheel Graphics
-            //SideWheel muss richtig orientiert werden
             sideWheel = new Image(Assets.HAGURUSIDECOCKWEEL);
-            sideWheel.SetOrigin(new Vector2(0, mainWheel.Y));
+            sideWheel.CenterOrigin();
 
-            sideWheel.X = mainWheel.X;
-            sideWheel.Y = mainWheel.Y;
-
+            //Muss relativ zur Uhr gerendered werden weil drehen der Uhr sonst sidewheels position nicht mitdreht!!!
+            sideWheel.Relative = true;
             sideWheel.ScaleX = 0.25f;
             sideWheel.ScaleY = 0.25f;
 
+            sideWheel.X = 0;
+            //Relative Position zur Uhr
+            sideWheel.Y = 0 - ((mainWheel.ScaledHeight/2) + (sideWheel.ScaledHeight/2)-20);
+                        
             //add it to the rendered Graphiclist
             graphics.Add(sideWheel);
 
@@ -82,8 +88,10 @@ namespace Clunk.Entities
            
             //Rotation of the main weel to match 1 hour ingame time by rotation when both hour and minute pointer meet
             //therefor 1minute ingame = aprox. 1,09 minutes in real time
-            mainWheel.Transform.Rotation += 32.7272f/3600f;
             
+            mainWheel.Transform.Rotation += 32.7272f/3600f;
+            sideWheel.Transform.Rotation -= 32.7272f /50f;
+
             timer += Game.Instance.DeltaTime; ;
             
             if (timer < 0f)
